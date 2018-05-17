@@ -34,6 +34,7 @@ const app = {
         return item
     },
 
+
     removeItem(ev) {
         const listItem = ev.target.closest('.flick')
         listItem.remove()
@@ -58,6 +59,7 @@ const app = {
         const item = this.renderListItem(flick)
         // this.list.appendChild(item)
         this.list.insertBefore(item, this.list.firstElementChild)
+
 
         f.reset()
     },
