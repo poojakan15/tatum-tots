@@ -12,10 +12,15 @@ ul{
     background-color: black;
     color: white;
     font-size: 30px;
+    list-style: none;
 }
 
 h1 {
     font-size: 50px;
     background-color: black;
     color: white;
+}
+
+.flickName {
+    margin: 0 0.75rem
 }
