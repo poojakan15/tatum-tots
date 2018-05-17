@@ -23,7 +23,26 @@ const app = {
             .querySelector('.flickName')
             .textContent = flick.name
 
+        item
+            .querySelector('button.alert')
+            .addEventListener('click', this.removeItem)
+
+        item    
+            .querySelector('button.warning')
+            .addEventListener('click', this.favFlick)
+
         return item
+    },
+
+    removeItem(ev) {
+        const listItem = ev.target.closest('.flick')
+        listItem.remove()
+        this.flicks.splice(this.flicks.indexOf(listItem), 1)
+    },
+    
+    favFlick(ev) {
+      const listItem = ev.target.closest('.flick')
+      listItem.style.backgroundColor = "darkred"  
     },
 
     handleSubmit(ev) {
