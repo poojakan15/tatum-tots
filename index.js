@@ -1,5 +1,6 @@
 const app = {
-    init: function(selectors) {
+    init(selectors) {
+        this.flicks = []
         this.max = 0
         this.list = document.querySelector(selectors.listSelector)
         document
@@ -23,8 +24,11 @@ const app = {
             name: f.flickName.value,
         }
 
+        this.flicks.push(flick)
+
         const item = this.renderListItem(flick)
         this.list.appendChild(item)
+
         f.reset()
     },
 }
