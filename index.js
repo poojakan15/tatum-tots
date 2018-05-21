@@ -61,6 +61,30 @@ class App  {
         flick.fav = listItem.classList.toggle('fav')
     }
 
+    editFlick(flick, ev) {
+        const btn = ev.target
+        const listItem = btn.closest('.flick')
+        const nameField = listItem.querySelector('.flickName')
+
+        if(nameField.isContentEditable) {
+            // no longer editable
+            nameField.contentEditable = false
+            btn.textContent = 'Edit'
+            btn.classList.remove('success')
+
+            // save 
+            flick.name = nameField.textContent
+        } else {
+            // editable
+            nameField.contentEditable = true
+            nameField.focus()
+            btn.textContent = 'Save'
+            btn.classList.add('success')
+        }
+
+
+    }
+
     handleSubmit(ev) {
         const f = ev.target
         const flick = {
