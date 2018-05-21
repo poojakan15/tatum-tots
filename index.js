@@ -1,5 +1,5 @@
-const app = {
-    init(selectors) {
+class App  {
+    constructor(selectors) {
         this.flicks = []
         this.max = 0
         this.list = document.querySelector(selectors.listSelector)
@@ -11,7 +11,7 @@ const app = {
                 ev.preventDefault()                           
                 this.handleSubmit(ev)
             })
-    }, 
+    }
 
     renderListItem(flick) {
         // const item = document.createElement('li')
@@ -29,7 +29,7 @@ const app = {
             //     ev.preventDefault()
             //     this.removeItem(ev)
             // })
-            .querySelector('remove.button')
+            .querySelector('button.alert')
             .addEventListener('click', this.removeItem.bind(this, flick))
 
         item    
@@ -40,7 +40,7 @@ const app = {
             })
 
         return item
-    },
+    }
 
 
     removeItem(flick, ev) {
@@ -56,7 +56,7 @@ const app = {
         const i = this.flicks.indexOf(flick)
         this.flicks.splice(i, 1)
 
-    },
+    }
     
     favFlick(ev) {
       const listItem = ev.target.closest('.flick')
@@ -67,7 +67,7 @@ const app = {
             this.flicks[i].fav = true
         }
       }
-    },
+    }
 
     handleSubmit(ev) {
         const f = ev.target
@@ -86,12 +86,18 @@ const app = {
 
 
         f.reset()
-    },
+    }
 }
 
-// app.init('#flickForm')
-app.init({
+const app = new App({
     formSelector: '#flickForm',
     listSelector: '#flickList',
     templateSelector: '.flick.template',
 })
+
+// app.init('#flickForm')
+// app.init({
+//     formSelector: '#flickForm',
+//     listSelector: '#flickList',
+//     templateSelector: '.flick.template',
+// })
