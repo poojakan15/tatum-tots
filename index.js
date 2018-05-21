@@ -19,9 +19,12 @@ class App  {
         item.classList.remove('template')
         item.dataset.id = flick.id
         // item.textContent = flick.name
-        item
-            .querySelector('.flickName')
-            .textContent = flick.name
+        const nameSpan = item.querySelector('.flickName')
+        nameSpan.textContent = flick.name
+        nameSpan.addEventListener(
+            'keypress',
+            this.saveOnEnter.bind(this, flick)
+        )
 
         item
             .querySelector('.remove.button')
@@ -62,8 +65,9 @@ class App  {
     }
 
     editFlick(flick, ev) {
-        const btn = ev.target
-        const listItem = btn.closest('.flick')
+        // const btn = ev.target
+        const listItem = ev.target.closest('.flick')
+        const btn = listItem.querySelector('.edit.button')
         const nameField = listItem.querySelector('.flickName')
 
         if(nameField.isContentEditable) {
@@ -81,8 +85,12 @@ class App  {
             btn.textContent = 'Save'
             btn.classList.add('success')
         }
+    }
 
-
+    saveOnEnter(flick, ev) {
+        if(ev.key === 'Enter') {
+            this.editFlick(flick, ev)
+        }
     }
 
     handleSubmit(ev) {
