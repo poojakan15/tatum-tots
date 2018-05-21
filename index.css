@@ -30,3 +30,7 @@ h1 {
 .template {
     display: none;
 }
+
+.flick.fav {
+    background-color: gold;
+}

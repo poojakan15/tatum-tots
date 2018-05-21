@@ -24,20 +24,18 @@ class App  {
             .textContent = flick.name
 
         item
-            // .querySelector('button.alert')
-            // .addEventListener('click', ev =>  {
-            //     ev.preventDefault()
-            //     this.removeItem(ev)
-            // })
-            .querySelector('button.alert')
-            .addEventListener('click', this.removeItem.bind(this, flick))
+            .querySelector('.remove.button')
+            .addEventListener(
+                'click', 
+                this.removeItem.bind(this, flick)
+            )
 
         item    
-            .querySelector('button.warning')
-            .addEventListener('click', ev =>  {
-                ev.preventDefault()
-                this.favFlick(ev)
-            })
+            .querySelector('.fav.button')
+            .addEventListener(
+                'click',
+                this.favFlick.bind(this, flick)
+            )
 
         return item
     }
@@ -46,27 +44,15 @@ class App  {
     removeItem(flick, ev) {
         const listItem = ev.target.closest('.flick')
         listItem.remove()
-        
-        // for(i = 0; i < this.flicks.length; i++) {
-        //     if(this.flicks[i].id.toString() == li.dataset.id) {
-        //         this.flicks.splice(this.flicks.indexOf(listItem), 1)
-        //     }
-        //   }
 
         const i = this.flicks.indexOf(flick)
         this.flicks.splice(i, 1)
 
     }
     
-    favFlick(ev) {
-      const listItem = ev.target.closest('.flick')
-      listItem.style.backgroundColor = "darkred" 
-
-      for(i = 0; i < this.flicks.length; i++) {
-        if(this.flicks[i].id.toString() == listItem.dataset.id) {
-            this.flicks[i].fav = true
-        }
-      }
+    favFlick(flick, ev) {
+        const listItem = ev.target.closest('.flick')
+        flick.fav = listItem.classList.toggle('fav')
     }
 
     handleSubmit(ev) {
@@ -74,7 +60,7 @@ class App  {
         const flick = {
             id: ++this.max,
             name: f.flickName.value,
-            fav: false
+            fav: false,
         }
 
         // this.flicks.push(flick)
