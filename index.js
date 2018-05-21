@@ -47,7 +47,6 @@ class App  {
 
         const i = this.flicks.indexOf(flick)
         this.flicks.splice(i, 1)
-
     }
     
     favFlick(flick, ev) {
