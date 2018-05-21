@@ -24,11 +24,13 @@ const app = {
             .textContent = flick.name
 
         item
-            .querySelector('button.alert')
-            .addEventListener('click', ev =>  {
-                ev.preventDefault()
-                this.removeItem(ev)
-            })
+            // .querySelector('button.alert')
+            // .addEventListener('click', ev =>  {
+            //     ev.preventDefault()
+            //     this.removeItem(ev)
+            // })
+            .querySelector('remove.button')
+            .addEventListener('click', this.removeItem.bind(this, flick))
 
         item    
             .querySelector('button.warning')
@@ -41,15 +43,19 @@ const app = {
     },
 
 
-    removeItem(ev) {
+    removeItem(flick, ev) {
         const listItem = ev.target.closest('.flick')
         listItem.remove()
         
-        for(i = 0; i < this.flicks.length; i++) {
-            if(this.flicks[i].id.toString() == li.dataset.id) {
-                this.flicks.splice(this.flicks.indexOf(listItem), 1)
-            }
-          }
+        // for(i = 0; i < this.flicks.length; i++) {
+        //     if(this.flicks[i].id.toString() == li.dataset.id) {
+        //         this.flicks.splice(this.flicks.indexOf(listItem), 1)
+        //     }
+        //   }
+
+        const i = this.flicks.indexOf(flick)
+        this.flicks.splice(i, 1)
+
     },
     
     favFlick(ev) {
