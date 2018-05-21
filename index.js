@@ -27,7 +27,7 @@ class App  {
             .querySelector('.remove.button')
             .addEventListener(
                 'click', 
-                this.removeItem.bind(this, flick)
+                this.removeFlick.bind(this, flick)
             )
 
         item    
@@ -37,11 +37,18 @@ class App  {
                 this.favFlick.bind(this, flick)
             )
 
+        item    
+            .querySelector('.edit.button')
+            .addEventListener(
+                'click',
+                this.editFlick.bind(this, flick)
+            )
+
         return item
     }
 
 
-    removeItem(flick, ev) {
+    removeFlick(flick, ev) {
         const listItem = ev.target.closest('.flick')
         listItem.remove()
 
