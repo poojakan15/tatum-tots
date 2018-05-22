@@ -46,6 +46,20 @@ class App  {
                 'click',
                 this.editFlick.bind(this, flick)
             )
+        
+        item    
+            .querySelector('.up.button')
+            .addEventListener(
+                'click',
+                this.moveUp.bind(this, flick)
+            )
+
+        item    
+            .querySelector('.down.button')
+            .addEventListener(
+                'click',
+                this.moveDown.bind(this, flick)
+            )
 
         return item
     }
@@ -87,6 +101,42 @@ class App  {
         }
     }
 
+    moveUp(flick, ev) {
+        const flickId = flick.id.toString()
+        const listItem = ev.target.parentNode.parentNode
+        const index = this.flicks.indexOf(flick)
+
+        if(index > 0)
+        {
+            const swap= this.flicks[index - 1]
+            this.flicks[index] = swap
+            this.flicks[index - 1] = flick
+
+            this.list.insertBefore(
+                listItem, 
+                listItem.previousElementSibling
+            )
+        }
+    }
+
+    moveDown(flick, ev) {
+        const flickId = flick.id.toString()
+        const listItem = ev.target.parentNode.parentNode
+        const index = this.flicks.indexOf(flick)
+
+        if(index < this.flicks.length - 1)
+        {
+            const swap = this.flicks[index + 1]
+            this.flicks[index] = swap
+            this.flicks[index + 1] = flick
+
+            this.list.insertBefore(
+                listItem.nextElementSibling, 
+                listItem
+            )
+        }
+    }
+
     saveOnEnter(flick, ev) {
         if(ev.key === 'Enter') {
             this.editFlick(flick, ev)
@@ -118,10 +168,3 @@ const app = new App({
     listSelector: '#flickList',
     templateSelector: '.flick.template',
 })
-
-// app.init('#flickForm')
-// app.init({
-//     formSelector: '#flickForm',
-//     listSelector: '#flickList',
-//     templateSelector: '.flick.template',
-// })
